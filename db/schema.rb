@@ -14,7 +14,6 @@ ActiveRecord::Schema.define(version: 20161213172310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "postgis"
 
   create_table "products", force: :cascade do |t|
     t.string   "title"
@@ -31,8 +30,8 @@ ActiveRecord::Schema.define(version: 20161213172310) do
   create_table "products_sizes", force: :cascade do |t|
     t.integer  "product_id"
     t.integer  "size_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_products_sizes_on_product_id", using: :btree
     t.index ["size_id"], name: "index_products_sizes_on_size_id", using: :btree
   end
