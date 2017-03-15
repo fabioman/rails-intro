@@ -38,8 +38,8 @@ set :branch, "the-end"
 namespace :deploy do
   after :finished, :restart_puma do
     on roles(:web) do
-      execute :sudo, 'execute puma-fabio restart'
-      execute :sudo, 'execute nginx reload'
+      execute :sudo, 'service puma-fabio restart'
+      execute :sudo, 'service nginx reload'
     end
   end
 end
