@@ -2,17 +2,19 @@
 lock "3.8.0"
 
 set :application, "rails-intro"
-set :repo_url, "git@github.com:fabioman/rails-intro.git"
+set :repo_url, "https://github.com/fabioman/rails-intro.git"
 set :branch, "the-end"
+
+# set :ssh_options, {:forward_agent => true}
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
- set :deploy_to, "/home/fabio/www/app"
+ set :deploy_to, "/home/fabio/www/app/"
 
 # Default value for :format is :airbrussh.
-# set :format, :airbrussh
+ set :format, :airbrussh
 
 # You can configure the Airbrussh format using :format_options.
 # These are the defaults.
@@ -43,8 +45,8 @@ namespace :deploy do
 end
 
 # source the environment variable
-prefix = 'source ~/.bash_profile;'
+#prefix = 'source ~/.bash_profile;'
+prefix = "set -a; . ~/.envfile; set +a "
 [:bundle, :rake, :rails].each do |cmd|
-  SSHKit.config.command_map.prefix[cmd]
-               .push(prefix)
+  SSHKit.config.command_map.prefix[cmd].push(prefix)
 end
