@@ -38,15 +38,15 @@ set :branch, "the-end"
 namespace :deploy do
   after :finished, :restart_puma do
     on roles(:web) do
-      execute :sudo, 'execute puma-fabio restart'
-      execute :sudo, 'execute nginx reload'
+      execute :sudo, 'service puma-fabio restart'
+      execute :sudo, 'service nginx reload'
     end
   end
 end
 
 # source the environment variable
 #prefix = 'source ~/.bash_profile;'
-prefix = "set -a; . ~/.envfile; set +a "
+prefix = "set -a; . ~/.envfile; set +a;"
 [:bundle, :rake, :rails].each do |cmd|
   SSHKit.config.command_map.prefix[cmd].push(prefix)
 end
