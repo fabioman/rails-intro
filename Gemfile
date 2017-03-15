@@ -34,6 +34,8 @@ gem 'rails_admin', '~> 1.1'
 
 gem 'paperclip', '~> 5.1'
 
+gem 'sprockets', '~> 2.8'
+
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
 
